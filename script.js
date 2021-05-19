@@ -1,42 +1,45 @@
+
+
+
 const renderImg = (data) => {
     const parent = document.querySelector('.album .row')
     parent.innerHTML=''
     data.forEach(el => { 
         const card = ` <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-         <img src = '${el.large_url}'
-
-          <div class="card-body">
+        <img src = '${el.large_url}' class='img-fluid'>
+        
+        <div class="card-body">
         
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  View
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+              View
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
                   Edit
                 </button>
-              </div>
-              <small class="text-muted">${el.id}</small>
-            </div>
-          </div>
-        </div>
-      </div>`
-        parent.innerHTML += card
-    });
-}
-
-
-const searchImages = (query) => {
-    fetch(`http://www.splashbase.co/api/v1/images/search?query=${query}`)
-    .then(response => response.json()).then((data) => {
-        console.log('my data',data);
-    }).catch((err) => console.log(err))
-}
-
-
-
-window.onload = () =>{
+                </div>
+                <small class="text-muted">${el.id}</small>
+                </div>
+                </div>
+                </div>
+                </div>`
+                parent.innerHTML += card
+            });
+        }
+        
+        const searchImages = (query) => {
+            fetch(`http://www.splashbase.co/api/v1/images/search?query=${query}`)
+            .then(response => response.json()).then((data) => {
+                 renderImg(data.images)
+            }).catch((err) => console.log(err))
+        }
+        
+        
+        
+        
+        window.onload = () =>{
     const primaryBtn = document.getElementById('primary')
     const secondaryBtn = document.getElementById('secondary')
     primaryBtn.addEventListener('click', ()=>searchImages('car'))
