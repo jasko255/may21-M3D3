@@ -91,6 +91,10 @@
         }
       }
     </style>
+
+    <script>
+
+    </script>
   </head>
   <body>
     <header>
@@ -432,6 +436,67 @@
     </footer>
     <script src="./Album example · Bootstrap_files/jquery-3.5.1.slim.min.js.download" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="./Album example · Bootstrap_files/bootstrap.bundle.min.js.download" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-  
+    <script>
 
-</body></html>
+        async function getPictures(url = '', data = {}) {
+          // FETCH IMAGE DATA
+        const response = await fetch("http://www.splashbase.co/api/v1/images/latest", {
+          "method": "GET",
+        })
+        .then(data => data.json())
+        .then(jsondata => {
+          // LOG JSON DATA
+          console.log('Output Data',jsondata)
+
+          let eachCard = document.querySelectorAll("div.card")
+
+          // SELECT CARDS
+
+          console.log(eachCard)
+
+        for (x = 0; x < eachCard.length; x++) {
+          // ON EACH CARD
+        let inputObj = jsondata.images
+
+        console.log(inputObj)
+
+        let inputImage = inputObj[x].url
+
+        // GET IMAGE DATA FROM JSON
+
+        console.log(inputImage)
+
+        // let card = document.querySelector(`.${eachCard[x]}`)
+
+        let imgElem = document.createElement('img')
+
+        // CREATE IMAGE ELEMENT
+
+        imgElem.src = inputImage
+
+        imgElem.alt = 'splash-base-image'
+
+        imgElem.height = '200'
+
+        imgElem.classList.add('bd-placeholder-img', 'card-img-top',)
+
+        let svg = eachCard[x].firstElementChild
+
+        // SELECT ALL SVG ELEMENTS
+
+        eachCard[x].replaceChild(imgElem, svg)
+
+        }
+          //this is your data
+          //you can do everything here :)
+        })
+
+        .catch(err => {
+          console.error(err);
+        });
+
+      }
+
+    </script>
+
+</body></html> 
