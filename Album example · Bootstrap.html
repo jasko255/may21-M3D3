@@ -438,6 +438,8 @@
     <script src="./Album example · Bootstrap_files/bootstrap.bundle.min.js.download" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script>
 
+// QUESTION TWO
+
         async function getPictures(url = '', data = {}) {
           // FETCH IMAGE DATA
         const response = await fetch("http://www.splashbase.co/api/v1/images/latest", {
@@ -496,6 +498,63 @@
         });
 
       }
+
+      // QUESTION FOUR + FIVE
+
+      function editToHide () {
+
+        // SELECT BUTTON GROUP
+
+      const groupButton = document.querySelectorAll('div.btn-group')
+
+      const card = document.querySelectorAll('div.card')
+
+      // FOR EACH BUTTON GROUP CHANGE TEXT
+
+      for (y=0; y<groupButton.length; y++) {
+              let secondButton = groupButton[y].children[1]
+
+              secondButton.innerHTML = "Hide"
+
+       
+            }
+    
+      }
+
+      // CALL FUNCTION TO CHJANGE TEXT
+      editToHide()
+
+      function displayNone (e) {
+        // DISPLAY NONE ON PARENT OF EVENT TARGET PARENT PARENT PARENT TO CARD
+        target = e.target || evt.srcElement
+
+        let buttongroup = target.parentNode
+
+        let cardbody = buttongroup.parentNode
+
+        let cardimg = cardbody.parentNode
+
+          cardimg.parentNode.style.display = `none`
+        }
+
+
+      const groupButton = document.querySelectorAll('div.btn-group')
+
+      // GET BUTTON GROUP
+      // ADD EVENT LISTENER TO EACH ELEMENT
+
+      groupButton.forEach(element => {
+
+        let secondButton = element.children[1]
+
+        secondButton.addEventListener('click', displayNone)
+
+      });
+
+
+
+
+
 
     </script>
 
