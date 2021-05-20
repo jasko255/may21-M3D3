@@ -466,6 +466,10 @@
 
         // GET IMAGE DATA FROM JSON
 
+        let imgID = inputObj[x].id
+
+        //GET IMAGE ID
+
         console.log(inputImage)
 
         // let card = document.querySelector(`.${eachCard[x]}`)
@@ -487,6 +491,10 @@
         // SELECT ALL SVG ELEMENTS
 
         eachCard[x].replaceChild(imgElem, svg)
+
+        let smallText = eachCard[x].querySelector('small')
+
+        smallText.innerHTML = imgID
 
         }
           //this is your data
